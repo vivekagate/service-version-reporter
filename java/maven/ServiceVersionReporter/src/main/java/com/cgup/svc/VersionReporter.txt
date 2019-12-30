@@ -1,0 +1,6 @@
+public class VersionReporter {
+
+    public void reportVersion(String version){
+        System.out.println("Posting version to VersionViewer: " + version);
+    }
+}

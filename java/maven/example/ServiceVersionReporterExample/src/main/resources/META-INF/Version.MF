@@ -1,0 +1,3 @@
+service=ServiceVersionReporterExample
+tag=heads/master
+environment=ENVIRONMENT
