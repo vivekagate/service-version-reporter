@@ -1,2 +1,7 @@
+# Intellij
 .idea/
 .idea*
+
+# Python
+venv
+*.pyc
