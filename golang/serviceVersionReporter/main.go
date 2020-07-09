@@ -1,5 +1,5 @@
 package svr
 
-func init() string {
+func initSvr() string {
 	return 'Sending Git commit to Cloud'
 }
