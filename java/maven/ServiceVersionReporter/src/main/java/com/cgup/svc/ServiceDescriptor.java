@@ -70,7 +70,7 @@ public class ServiceDescriptor {
                 }
                 if(key.equalsIgnoreCase("environment")){
                     Optional opt = Optional.ofNullable(System.getenv(val));
-                    sd.setEnvironment(opt.orElse("development"));
+                    sd.setEnvironment((String) opt.orElse("development"));
                 }
             }
         } catch (IOException e) {
