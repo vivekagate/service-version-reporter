@@ -3,7 +3,7 @@ package com.cgup.examples.svc;
 import com.cgup.svc.VersionReporter;
 
 /**
- * Hello world!
+ * Version Tracker Demo App!
  */
 public final class App {
     private App() {
