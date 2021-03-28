@@ -1,3 +1,4 @@
 service=ServiceVersionReporterExample
-tag=heads/master
+commit=b6676e5ddf1ac2a9049d26f940ae09612e7ef526
+repo=b6676e5ddf1ac2a9049d26f940ae09612e7ef526
 environment=ENVIRONMENT
