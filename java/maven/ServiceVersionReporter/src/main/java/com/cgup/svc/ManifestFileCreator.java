@@ -5,12 +5,15 @@ import org.apache.maven.plugin.MojoExecutionException;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 public class ManifestFileCreator {
 
     private File dir;
     private String pkg;
     private String name;
+    private String repo;
 
     public ManifestFileCreator(File dir, String pkg, String name){
         this.dir = dir;
@@ -18,15 +21,19 @@ public class ManifestFileCreator {
         this.name = name;
     }
 
-    public void write(String servicename, String environmentId, String version) throws MojoExecutionException {
+    public void write(String servicename, String environmentId, String commit, String repo) throws MojoExecutionException {
         FileWriter w = null;
         try
         {
+
             String targetFolder = "src/main/resources/META-INF/";
+//            Files.createDirectories(Path.of(targetFolder);
+
             w = new FileWriter( targetFolder + this.name );
 
             w.write( "service="+servicename+"\n");
-            w.write( "tag="+version+"\n");
+            w.write( "commit="+commit+"\n");
+            w.write("repo="+repo+"\n");
             w.write( "environment="+environmentId+"\n");
         }
         catch ( IOException e )
@@ -49,16 +56,4 @@ public class ManifestFileCreator {
         }
     }
 
-
-    private String readFile(String pkg, String version, String fname) throws IOException {
-        return "package " + pkg + ";\n" +
-                "public class VersionReporter {\n" +
-                "\n" +
-                "    private static final String VERSION=\"" + version + "\";" +
-                "\n" +
-                "    public static void reportVersion(){\n" +
-                "        System.out.println(\"Posting version to VersionViewer: \" + VERSION);\n" +
-                "    }\n" +
-                "}";
-    }
 }

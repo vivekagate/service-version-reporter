@@ -49,14 +49,30 @@ public class ServiceVersionMojo
      */
     private String versionCommand;
 
+    /**
+     * @parameter property="commitommand" default-value="git rev-parse HEAD"
+     */
+    private String commitCommand;
+
+    /**
+     * @parameter property="repocommand" git config --get remote.origin.url"
+     */
+    private String repoCommand;
+
+    private String executeCommand(String command) throws IOException {
+        CommandExecutor exec = new CommandExecutor(commitCommand);
+        return exec.runCommand();
+    }
+
+
     public void execute()
         throws MojoExecutionException
     {
-        CommandExecutor exec = new CommandExecutor(versionCommand);
         try {
-            String version = exec.runCommand();
+            String commit = executeCommand(commitCommand);
+            String repo = executeCommand(repoCommand);
             ManifestFileCreator cc = new ManifestFileCreator(outputDirectory, pkg, "Version.MF");
-            cc.write(serviceName, environmentIdentifier, version);
+            cc.write(serviceName, environmentIdentifier, commit, repo);
         } catch (IOException e) {
             throw new MojoExecutionException(e.getMessage());
         }
