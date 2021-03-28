@@ -1,4 +1,4 @@
-package com.cgup.examples.svc;
+package com.nirops.verstiontracker.examples.svc;
 
 import com.cgup.svc.VersionReporter;
 
